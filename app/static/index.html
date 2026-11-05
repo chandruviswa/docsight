@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Docsight</title>
+<style>
+  :root {
+    --ink: #1c2230; --ink-2: #5b6474; --line: #e3e4e8; --bg: #f6f6f4; --surface: #fff;
+    --bar: #2f5d8a; --track: #e9ebef; --good: #1d6b47; --warn: #96590a; --warn-bg: #fbf0dc; --good-bg: #e2f1ea;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ink: #e7e9ee; --ink-2: #9aa2b1; --line: #2c3240; --bg: #14171e; --surface: #1b1f28;
+      --bar: #7aa7d4; --track: #2a303c; --good: #6fc79d; --warn: #e3b263; --warn-bg: #3a2e18; --good-bg: #17332a;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.5 "Segoe UI", system-ui, sans-serif; }
+  .page { max-width: 1000px; margin: 0 auto; padding: 32px 16px 64px; }
+  h1 { font-size: 24px; font-weight: 600; margin: 0; }
+  h2 { font-size: 16px; font-weight: 600; margin: 36px 0 10px; }
+  p.sub { margin: 4px 0 24px; color: var(--ink-2); max-width: 680px; }
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
+  .tile { background: var(--surface); border: 1px solid var(--line); padding: 14px 16px; text-align: left; font: inherit; color: inherit; cursor: pointer; border-radius: 4px; }
+  .tile[aria-pressed="true"] { border-color: var(--bar); box-shadow: inset 0 0 0 1px var(--bar); }
+  .tile span, .tile small { display: block; color: var(--ink-2); font-size: 13px; }
+  .tile strong { display: block; font-size: 26px; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .wrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--line); }
+  tbody tr:last-child td { border-bottom: 0; }
+  th { font-size: 12px; font-weight: 600; color: var(--ink-2); }
+  tbody td:first-child { white-space: nowrap; }
+  .num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .barcell { width: 42%; min-width: 150px; }
+  .track { height: 8px; background: var(--track); border-radius: 0 4px 4px 0; }
+  .fill { height: 8px; background: var(--bar); border-radius: 0 4px 4px 0; }
+  .facts { display: flex; flex-wrap: wrap; gap: 8px 32px; margin-top: 12px; color: var(--ink-2); }
+  .facts b { color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .mono { font-family: ui-monospace, Consolas, monospace; font-size: 13px; overflow-wrap: anywhere; }
+  .pill { font-size: 12px; padding: 1px 7px; border-radius: 3px; white-space: nowrap; }
+  .pill.ok { background: var(--good-bg); color: var(--good); }
+  .pill.no { background: var(--warn-bg); color: var(--warn); }
+  .upload { background: var(--surface); border: 1px solid var(--line); padding: 14px; }
+  .upload input { font: inherit; color: inherit; max-width: 100%; }
+  .muted { color: var(--ink-2); }
+  #result { margin-top: 12px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1>Docsight</h1>
+  <p class="sub">How well the extractor does on labelled invoices. Pick a group of documents to see
+    its field scores. "Held-out" means a layout that wasn't used while writing the rules.</p>
+
+  <div class="tiles" id="tiles"></div>
+
+  <h2 id="fields-title">F1 by field</h2>
+  <div class="wrap">
+    <table>
+      <thead><tr><th>Field</th><th class="barcell">F1</th><th class="num">F1</th><th class="num">Precision</th><th class="num">Recall</th><th class="num">Labelled</th></tr></thead>
+      <tbody id="fields"></tbody>
+    </table>
+  </div>
+  <div class="facts" id="facts"></div>
+
+  <h2>Mistakes in this group</h2>
+  <div class="wrap">
+    <table>
+      <thead><tr><th>Document</th><th>Field</th><th>Expected</th><th>Got</th><th>Sent to review?</th></tr></thead>
+      <tbody id="mistakes"></tbody>
+    </table>
+  </div>
+
+  <h2>Past runs</h2>
+  <div class="wrap">
+    <table>
+      <thead><tr><th>When</th><th>Note</th><th class="num">Seen, digital</th><th class="num">Seen, scanned</th><th class="num">Held-out, digital</th><th class="num">Held-out, scanned</th></tr></thead>
+      <tbody id="runs"></tbody>
+    </table>
+  </div>
+
+  <h2>Try a document</h2>
+  <div class="upload">
+    <input type="file" id="file" accept="application/pdf" aria-label="Choose a PDF">
+    <div id="result"></div>
+  </div>
+</div>
+
+<script>
+const SLICES = {
+  "seen/digital": ["Seen layouts, digital", "seen_digital"],
+  "seen/scanned": ["Seen layouts, scanned", "seen_scanned"],
+  "held_out/digital": ["Held-out layout, digital", "held_digital"],
+  "held_out/scanned": ["Held-out layout, scanned", "held_scanned"],
+};
+const LABELS = {
+  invoice_number: "Invoice number", invoice_date: "Invoice date", due_date: "Due date",
+  po_number: "PO number", vendor: "Vendor", customer: "Customer", currency: "Currency",
+  subtotal: "Subtotal", tax: "Tax", total: "Total",
+};
+const $ = (id) => document.getElementById(id);
+const pct = (v) => (v === null || v === undefined ? "n/a" : `${Math.round(v * 100)}%`);
+const f2 = (v) => v.toFixed(3);
+
+function esc(text) {
+  const div = document.createElement("div");
+  div.textContent = text ?? "(blank)";
+  return div.innerHTML;
+}
+
+function inSlice(name, key) {
+  const scan = name.includes("_scan_");
+  const held = name.startsWith("D_");
+  return key === `${held ? "held_out" : "seen"}/${scan ? "scanned" : "digital"}`;
+}
+
+function showSlice(report, key) {
+  const slice = report.slices[key];
+  document.querySelectorAll(".tile").forEach((tile) =>
+    tile.setAttribute("aria-pressed", tile.dataset.key === key)
+  );
+  $("fields-title").textContent = `F1 by field: ${SLICES[key][0].toLowerCase()}`;
+  $("fields").innerHTML = Object.entries(slice.fields).map(([name, s]) => `
+    <tr title="${LABELS[name]}: F1 ${f2(s.f1)}, precision ${f2(s.precision)}, recall ${f2(s.recall)}">
+      <td>${LABELS[name]}</td>
+      <td class="barcell"><div class="track"><div class="fill" style="width:${s.f1 * 100}%"></div></div></td>
+      <td class="num">${f2(s.f1)}</td><td class="num">${f2(s.precision)}</td>
+      <td class="num">${f2(s.recall)}</td><td class="num">${s.support}</td>
+    </tr>`).join("");
+  $("facts").innerHTML = `
+    <span>Every field right: <b>${slice.fully_correct} of ${slice.documents}</b></span>
+    <span>Documents with a mistake that went to review: <b>${pct(slice.errors_caught)}</b></span>
+    <span>Correct documents sent to review anyway: <b>${pct(slice.false_alarms)}</b></span>
+    <span>Average time: <b>${slice.avg_seconds}s</b></span>`;
+
+  const mistakes = report.mistakes.filter((m) => inSlice(m.document, key));
+  $("mistakes").innerHTML = mistakes.length
+    ? mistakes.slice(0, 15).map((m) => `<tr>
+        <td class="mono">${esc(m.document)}</td><td>${LABELS[m.field]}</td>
+        <td class="mono">${esc(m.expected)}</td><td class="mono">${esc(m.got)}</td>
+        <td><span class="pill ${m.caught ? "ok" : "no"}">${m.caught ? "yes" : "no, slipped through"}</span></td>
+      </tr>`).join("")
+    : `<tr><td colspan="5" class="muted">None. Every labelled field in this group was right.</td></tr>`;
+}
+
+async function load() {
+  const runs = await fetch("/api/evaluations").then((r) => r.json());
+  if (!runs.length) {
+    $("tiles").innerHTML = `<p class="muted">No evaluation yet. Run <code>python -m app.evaluate</code>.</p>`;
+    return;
+  }
+  const report = await fetch(`/api/evaluations/${runs[0].name}`).then((r) => r.json());
+
+  $("tiles").innerHTML = Object.entries(SLICES).map(([key, [label]]) => {
+    const slice = report.slices[key];
+    return `<button class="tile" data-key="${key}" aria-pressed="false">
+      <span>${label}</span><strong>${f2(slice.overall.f1)}</strong>
+      <small>F1 over ${slice.documents} documents</small></button>`;
+  }).join("");
+  document.querySelectorAll(".tile").forEach((tile) =>
+    tile.addEventListener("click", () => showSlice(report, tile.dataset.key))
+  );
+  showSlice(report, "seen/scanned");
+
+  $("runs").innerHTML = runs.map((run) => `<tr>
+    <td class="num" style="text-align:left">${run.created_at.slice(0, 16).replace("T", " ")}</td>
+    <td>${esc(run.note || "")}</td>
+    ${Object.keys(SLICES).map((k) => `<td class="num">${run.slices[k] ? f2(run.slices[k].f1) : "n/a"}</td>`).join("")}
+  </tr>`).join("");
+}
+
+$("file").addEventListener("change", async (event) => {
+  const file = event.target.files[0];
+  if (!file) return;
+  $("result").innerHTML = `<p class="muted">Reading ${esc(file.name)}…</p>`;
+  const form = new FormData();
+  form.append("file", file);
+  const response = await fetch("/api/documents", { method: "POST", body: form });
+  const body = await response.json();
+  if (!response.ok) {
+    $("result").innerHTML = `<p>${esc(body.detail)}</p>`;
+    return;
+  }
+  const rows = Object.entries(body.fields).map(([name, f]) =>
+    `<tr><td>${LABELS[name]}</td><td class="mono">${esc(f?.value)}</td><td class="muted">${f?.source ?? ""}</td></tr>`
+  ).join("");
+  const issues = body.issues.map((i) => `<li>${esc(i.message)}</li>`).join("");
+  $("result").innerHTML = `
+    <p><span class="pill ${body.status === "ok" ? "ok" : "no"}">${body.status === "ok" ? "looks fine" : "needs review"}</span>
+      <span class="muted">read with ${body.method}, ${body.line_items.length} line items</span></p>
+    <div class="wrap"><table><thead><tr><th>Field</th><th>Value</th><th>Found by</th></tr></thead><tbody>${rows}</tbody></table></div>
+    ${issues ? `<ul>${issues}</ul>` : ""}`;
+});
+
+load();
+</script>
+</body>
+</html>
