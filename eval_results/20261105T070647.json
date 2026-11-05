@@ -1,0 +1,1031 @@
+{
+ "created_at": "2026-11-05T07:06:47+00:00",
+ "slices": {
+  "all": {
+   "documents": 132,
+   "fully_correct": 97,
+   "overall": {
+    "precision": 0.9858,
+    "recall": 0.9284,
+    "f1": 0.9562,
+    "support": 1271
+   },
+   "fields": {
+    "invoice_number": {
+     "precision": 1.0,
+     "recall": 0.75,
+     "f1": 0.8571,
+     "support": 132
+    },
+    "invoice_date": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 132
+    },
+    "due_date": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 132
+    },
+    "po_number": {
+     "precision": 0.8182,
+     "recall": 0.759,
+     "f1": 0.7875,
+     "support": 83
+    },
+    "vendor": {
+     "precision": 0.9773,
+     "recall": 0.9773,
+     "f1": 0.9773,
+     "support": 132
+    },
+    "customer": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 132
+    },
+    "currency": {
+     "precision": 1.0,
+     "recall": 0.9848,
+     "f1": 0.9924,
+     "support": 132
+    },
+    "subtotal": {
+     "precision": 1.0,
+     "recall": 0.75,
+     "f1": 0.8571,
+     "support": 132
+    },
+    "tax": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 132
+    },
+    "total": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 132
+    }
+   },
+   "errors_caught": 0.9429,
+   "documents_with_errors": 35,
+   "errors_missed": 2,
+   "false_alarms": 0.0412,
+   "avg_seconds": 1.001
+  },
+  "held_out/digital": {
+   "documents": 25,
+   "fully_correct": 0,
+   "overall": {
+    "precision": 0.9153,
+    "recall": 0.7238,
+    "f1": 0.8084,
+    "support": 239
+   },
+   "fields": {
+    "invoice_number": {
+     "precision": 0.0,
+     "recall": 0.0,
+     "f1": 0.0,
+     "support": 25
+    },
+    "invoice_date": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 25
+    },
+    "due_date": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 25
+    },
+    "po_number": {
+     "precision": 0.0,
+     "recall": 0.0,
+     "f1": 0.0,
+     "support": 14
+    },
+    "vendor": {
+     "precision": 0.92,
+     "recall": 0.92,
+     "f1": 0.92,
+     "support": 25
+    },
+    "customer": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 25
+    },
+    "currency": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 25
+    },
+    "subtotal": {
+     "precision": 0.0,
+     "recall": 0.0,
+     "f1": 0.0,
+     "support": 25
+    },
+    "tax": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 25
+    },
+    "total": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 25
+    }
+   },
+   "errors_caught": 1.0,
+   "documents_with_errors": 25,
+   "errors_missed": 0,
+   "false_alarms": null,
+   "avg_seconds": 0.041
+  },
+  "held_out/scanned": {
+   "documents": 8,
+   "fully_correct": 0,
+   "overall": {
+    "precision": 0.9821,
+    "recall": 0.7051,
+    "f1": 0.8209,
+    "support": 78
+   },
+   "fields": {
+    "invoice_number": {
+     "precision": 0.0,
+     "recall": 0.0,
+     "f1": 0.0,
+     "support": 8
+    },
+    "invoice_date": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 8
+    },
+    "due_date": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 8
+    },
+    "po_number": {
+     "precision": 0.0,
+     "recall": 0.0,
+     "f1": 0.0,
+     "support": 6
+    },
+    "vendor": {
+     "precision": 0.875,
+     "recall": 0.875,
+     "f1": 0.875,
+     "support": 8
+    },
+    "customer": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 8
+    },
+    "currency": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 8
+    },
+    "subtotal": {
+     "precision": 0.0,
+     "recall": 0.0,
+     "f1": 0.0,
+     "support": 8
+    },
+    "tax": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 8
+    },
+    "total": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 8
+    }
+   },
+   "errors_caught": 1.0,
+   "documents_with_errors": 8,
+   "errors_missed": 0,
+   "false_alarms": null,
+   "avg_seconds": 3.411
+  },
+  "seen/digital": {
+   "documents": 75,
+   "fully_correct": 75,
+   "overall": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "support": 723
+   },
+   "fields": {
+    "invoice_number": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 75
+    },
+    "invoice_date": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 75
+    },
+    "due_date": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 75
+    },
+    "po_number": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 48
+    },
+    "vendor": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 75
+    },
+    "customer": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 75
+    },
+    "currency": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 75
+    },
+    "subtotal": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 75
+    },
+    "tax": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 75
+    },
+    "total": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 75
+    }
+   },
+   "errors_caught": null,
+   "documents_with_errors": 0,
+   "errors_missed": 0,
+   "false_alarms": 0.0267,
+   "avg_seconds": 0.082
+  },
+  "seen/scanned": {
+   "documents": 24,
+   "fully_correct": 22,
+   "overall": {
+    "precision": 1.0,
+    "recall": 0.9913,
+    "f1": 0.9957,
+    "support": 231
+   },
+   "fields": {
+    "invoice_number": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 24
+    },
+    "invoice_date": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 24
+    },
+    "due_date": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 24
+    },
+    "po_number": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 15
+    },
+    "vendor": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 24
+    },
+    "customer": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 24
+    },
+    "currency": {
+     "precision": 1.0,
+     "recall": 0.9167,
+     "f1": 0.9565,
+     "support": 24
+    },
+    "subtotal": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 24
+    },
+    "tax": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 24
+    },
+    "total": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1": 1.0,
+     "support": 24
+    }
+   },
+   "errors_caught": 0.0,
+   "documents_with_errors": 2,
+   "errors_missed": 2,
+   "false_alarms": 0.0909,
+   "avg_seconds": 4.07
+  }
+ },
+ "mistakes": [
+  {
+   "document": "B_scan_003.pdf",
+   "field": "currency",
+   "expected": "EUR",
+   "got": null,
+   "caught": false
+  },
+  {
+   "document": "B_scan_006.pdf",
+   "field": "currency",
+   "expected": "EUR",
+   "got": null,
+   "caught": false
+  },
+  {
+   "document": "D_000.pdf",
+   "field": "invoice_number",
+   "expected": "A-15073",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_000.pdf",
+   "field": "po_number",
+   "expected": "PO69584",
+   "got": "69584",
+   "caught": true
+  },
+  {
+   "document": "D_000.pdf",
+   "field": "subtotal",
+   "expected": "37308.82",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_001.pdf",
+   "field": "invoice_number",
+   "expected": "INV-93826",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_001.pdf",
+   "field": "po_number",
+   "expected": "PO92945",
+   "got": "92945",
+   "caught": true
+  },
+  {
+   "document": "D_001.pdf",
+   "field": "subtotal",
+   "expected": "26597.45",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_002.pdf",
+   "field": "invoice_number",
+   "expected": "A-47605",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_002.pdf",
+   "field": "subtotal",
+   "expected": "22326.77",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_003.pdf",
+   "field": "invoice_number",
+   "expected": "INV-21573",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_003.pdf",
+   "field": "po_number",
+   "expected": "PO71478",
+   "got": "71478",
+   "caught": true
+  },
+  {
+   "document": "D_003.pdf",
+   "field": "subtotal",
+   "expected": "50412.94",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_004.pdf",
+   "field": "invoice_number",
+   "expected": "INV-69518",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_004.pdf",
+   "field": "po_number",
+   "expected": "PO99517",
+   "got": "99517",
+   "caught": true
+  },
+  {
+   "document": "D_004.pdf",
+   "field": "vendor",
+   "expected": "Lumen Lighting GmbH",
+   "got": "Pay by 14.02.2025 Your ref PO99517",
+   "caught": true
+  },
+  {
+   "document": "D_004.pdf",
+   "field": "subtotal",
+   "expected": "37958.37",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_005.pdf",
+   "field": "invoice_number",
+   "expected": "A-17221",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_005.pdf",
+   "field": "subtotal",
+   "expected": "49682.38",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_006.pdf",
+   "field": "invoice_number",
+   "expected": "A-83714",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_006.pdf",
+   "field": "po_number",
+   "expected": "PO87180",
+   "got": "87180",
+   "caught": true
+  },
+  {
+   "document": "D_006.pdf",
+   "field": "subtotal",
+   "expected": "42021.95",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_007.pdf",
+   "field": "invoice_number",
+   "expected": "A-43129",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_007.pdf",
+   "field": "po_number",
+   "expected": "PO98873",
+   "got": "98873",
+   "caught": true
+  },
+  {
+   "document": "D_007.pdf",
+   "field": "subtotal",
+   "expected": "31366.70",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_008.pdf",
+   "field": "invoice_number",
+   "expected": "SI-91590",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_008.pdf",
+   "field": "po_number",
+   "expected": "PO57332",
+   "got": "57332",
+   "caught": true
+  },
+  {
+   "document": "D_008.pdf",
+   "field": "subtotal",
+   "expected": "26729.61",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_009.pdf",
+   "field": "invoice_number",
+   "expected": "INV-81968",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_009.pdf",
+   "field": "po_number",
+   "expected": "PO77266",
+   "got": "77266",
+   "caught": true
+  },
+  {
+   "document": "D_009.pdf",
+   "field": "subtotal",
+   "expected": "27346.38",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_010.pdf",
+   "field": "invoice_number",
+   "expected": "INV-71792",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_010.pdf",
+   "field": "subtotal",
+   "expected": "54301.48",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_011.pdf",
+   "field": "invoice_number",
+   "expected": "INV-18846",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_011.pdf",
+   "field": "subtotal",
+   "expected": "29749.14",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_012.pdf",
+   "field": "invoice_number",
+   "expected": "A-9616",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_012.pdf",
+   "field": "po_number",
+   "expected": "PO33256",
+   "got": "33256",
+   "caught": true
+  },
+  {
+   "document": "D_012.pdf",
+   "field": "subtotal",
+   "expected": "17317.81",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_013.pdf",
+   "field": "invoice_number",
+   "expected": "A-11461",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_013.pdf",
+   "field": "po_number",
+   "expected": "PO27323",
+   "got": "27323",
+   "caught": true
+  },
+  {
+   "document": "D_013.pdf",
+   "field": "subtotal",
+   "expected": "26712.15",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_014.pdf",
+   "field": "invoice_number",
+   "expected": "SI-14526",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_014.pdf",
+   "field": "subtotal",
+   "expected": "23029.34",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_015.pdf",
+   "field": "invoice_number",
+   "expected": "INV-29520",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_015.pdf",
+   "field": "subtotal",
+   "expected": "11396.05",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_016.pdf",
+   "field": "invoice_number",
+   "expected": "A-65721",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_016.pdf",
+   "field": "po_number",
+   "expected": "PO31419",
+   "got": "31419",
+   "caught": true
+  },
+  {
+   "document": "D_016.pdf",
+   "field": "subtotal",
+   "expected": "13689.24",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_017.pdf",
+   "field": "invoice_number",
+   "expected": "INV-7239",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_017.pdf",
+   "field": "po_number",
+   "expected": "PO95346",
+   "got": "95346",
+   "caught": true
+  },
+  {
+   "document": "D_017.pdf",
+   "field": "subtotal",
+   "expected": "52817.15",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_018.pdf",
+   "field": "invoice_number",
+   "expected": "INV-93630",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_018.pdf",
+   "field": "subtotal",
+   "expected": "11676.24",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_019.pdf",
+   "field": "invoice_number",
+   "expected": "INV-2810",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_019.pdf",
+   "field": "subtotal",
+   "expected": "61200.66",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_020.pdf",
+   "field": "invoice_number",
+   "expected": "INV-90185",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_020.pdf",
+   "field": "subtotal",
+   "expected": "24644.24",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_021.pdf",
+   "field": "invoice_number",
+   "expected": "A-96821",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_021.pdf",
+   "field": "po_number",
+   "expected": "PO51880",
+   "got": "51880",
+   "caught": true
+  },
+  {
+   "document": "D_021.pdf",
+   "field": "subtotal",
+   "expected": "59997.78",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_022.pdf",
+   "field": "invoice_number",
+   "expected": "A-12661",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_022.pdf",
+   "field": "po_number",
+   "expected": "PO66511",
+   "got": "66511",
+   "caught": true
+  },
+  {
+   "document": "D_022.pdf",
+   "field": "subtotal",
+   "expected": "25815.04",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_023.pdf",
+   "field": "invoice_number",
+   "expected": "SI-68931",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_023.pdf",
+   "field": "vendor",
+   "expected": "Lumen Lighting GmbH",
+   "got": "Description Qty Unit Price Amount",
+   "caught": true
+  },
+  {
+   "document": "D_023.pdf",
+   "field": "subtotal",
+   "expected": "8592.20",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_024.pdf",
+   "field": "invoice_number",
+   "expected": "INV-60795",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_024.pdf",
+   "field": "subtotal",
+   "expected": "21102.24",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_scan_000.pdf",
+   "field": "invoice_number",
+   "expected": "BILL-83812",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_scan_000.pdf",
+   "field": "po_number",
+   "expected": "PO92653",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_scan_000.pdf",
+   "field": "subtotal",
+   "expected": "16367.04",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_scan_001.pdf",
+   "field": "invoice_number",
+   "expected": "INV-33969",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_scan_001.pdf",
+   "field": "po_number",
+   "expected": "PO89881",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_scan_001.pdf",
+   "field": "subtotal",
+   "expected": "16313.43",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_scan_002.pdf",
+   "field": "invoice_number",
+   "expected": "INV-45372",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_scan_002.pdf",
+   "field": "subtotal",
+   "expected": "9320.92",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_scan_003.pdf",
+   "field": "invoice_number",
+   "expected": "BILL-68139",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_scan_003.pdf",
+   "field": "po_number",
+   "expected": "PO39527",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_scan_003.pdf",
+   "field": "subtotal",
+   "expected": "80966.19",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_scan_004.pdf",
+   "field": "invoice_number",
+   "expected": "SI-56157",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_scan_004.pdf",
+   "field": "vendor",
+   "expected": "Lumen Lighting GmbH",
+   "got": "Description Qty Unit Price Amount",
+   "caught": true
+  },
+  {
+   "document": "D_scan_004.pdf",
+   "field": "subtotal",
+   "expected": "40134.51",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_scan_005.pdf",
+   "field": "invoice_number",
+   "expected": "INV-76475",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_scan_005.pdf",
+   "field": "po_number",
+   "expected": "PO70155",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_scan_005.pdf",
+   "field": "subtotal",
+   "expected": "41293.67",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_scan_006.pdf",
+   "field": "invoice_number",
+   "expected": "A-68725",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_scan_006.pdf",
+   "field": "po_number",
+   "expected": "PO34077",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_scan_006.pdf",
+   "field": "subtotal",
+   "expected": "13603.81",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_scan_007.pdf",
+   "field": "invoice_number",
+   "expected": "INV-32291",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_scan_007.pdf",
+   "field": "po_number",
+   "expected": "PO27681",
+   "got": null,
+   "caught": true
+  },
+  {
+   "document": "D_scan_007.pdf",
+   "field": "subtotal",
+   "expected": "28468.31",
+   "got": null,
+   "caught": true
+  }
+ ],
+ "mistake_count": 91,
+ "note": "Handle OCR misreads in dates, amounts and currency codes"
+}
