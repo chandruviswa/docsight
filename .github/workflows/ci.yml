@@ -18,3 +18,31 @@ jobs:
       - run: pip install -r requirements-dev.txt
       - run: ruff check .
       - run: pytest -q
+
+  docker:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: docker build -t docsight .
+      - run: docker run -d --name docsight -p 8000:8000 docsight
+      - name: Wait for the API
+        run: |
+          for i in $(seq 1 30); do
+            curl -fs http://localhost:8000/health && exit 0
+            sleep 2
+          done
+          exit 1
+      - run: curl -fs http://localhost:8000/ | grep -q Docsight
+      - name: Upload a scanned invoice to the running container
+        run: |
+          pip install reportlab==4.2.5 pypdfium2==4.30.0 Pillow==11.0.0
+          python samples/generate.py --out /tmp/samples --per-template 1 --scans-per-template 1
+          curl -fs -F file=@/tmp/samples/A_scan_000.pdf http://localhost:8000/api/documents | tee /tmp/result.json
+          grep -q '"method":"ocr"' /tmp/result.json
+      - name: Show logs on failure
+        if: failure()
+        run: docker logs docsight
